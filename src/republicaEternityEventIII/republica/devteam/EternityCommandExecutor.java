@@ -1,5 +1,9 @@
 package republicaEternityEventIII.republica.devteam;
 
+import java.util.Random;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,6 +14,9 @@ public class EternityCommandExecutor implements CommandExecutor{
 	private String ziminiar;
 	private Ziminiar z;
 	private EternityMain em = new EternityMain();
+	private EternityItems im = new EternityItems();
+	
+	private Player p[] = em.getServer().getOnlinePlayers();
 	
 	@Override
     public boolean onCommand(CommandSender cs, Command c, String l, String[] args) {
@@ -26,7 +33,17 @@ public class EternityCommandExecutor implements CommandExecutor{
 		
 		if(c.getLabel().equalsIgnoreCase("Caesar")){
 			if(cs.isOp()){
-				//Code to spawn a random amount of books with a warning from caesar near players
+				Random rand = new Random(4);
+				int temp = rand.nextInt();
+				
+				for(int i = 0; i < temp && i < p.length; i++){
+					int temp2 = rand.nextInt();
+					Player player = p[temp2];
+					player.sendMessage(ChatColor.GREEN + "A book falls from the sky.");
+					Location l1 = player.getLocation();
+					player.getWorld().dropItemNaturally(l1, im.caesarBook());
+				}
+				
 				return false;
 			}
 		}
