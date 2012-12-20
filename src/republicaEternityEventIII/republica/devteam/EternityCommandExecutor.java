@@ -41,6 +41,7 @@ public class EternityCommandExecutor implements CommandExecutor{
 					Player player = p[temp2];
 					player.sendMessage(ChatColor.GREEN + "A book falls from the sky.");
 					Location l1 = player.getLocation();
+					l1.add(2, 5, 0);
 					player.getWorld().dropItemNaturally(l1, im.caesarBook());
 				}
 				
