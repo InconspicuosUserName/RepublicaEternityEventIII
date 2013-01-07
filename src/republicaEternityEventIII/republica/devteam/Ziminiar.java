@@ -42,7 +42,7 @@ public class Ziminiar {
 	
 		public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		// Ziminiar's Armor.
-		// Todo: Give acctual armor instead of just diamond.
+		// Todo: Change NBT vslues.
 		if (cmd.getName().equalsIgnoreCase("ziminiararmor"))
 		{
 			Player player = (Player) sender;
