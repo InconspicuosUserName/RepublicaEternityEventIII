@@ -40,14 +40,10 @@ public class Ziminiar {
 		ZiminiarHealth = 2000;
 	}
 	
-	private void ziminiarWeapons(){
-		//TODO: Give Ziminiar his weapons
-	}
-	
 		public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		// Ziminiar's Armor.
 		// Todo: Give acctual armor instead of just diamond.
-		if (cmd.getName().equalsIgnoreCase("armor"))
+		if (cmd.getName().equalsIgnoreCase("ziminiararmor"))
 		{
 			Player player = (Player) sender;
 			PlayerInventory inv = player.getInventory();
@@ -90,6 +86,40 @@ public class Ziminiar {
 			inv.setBoots(boots);
 			
 			return true;
+		}
+		
+		if (cmd.getName().equalsIgnoreCase("ziminiarweapon"))
+		{
+			//Basic Function Variables
+			Player player = (Player) sender;
+			PlayerInventory inv = player.getInventory();
+			
+			//Weapon Variables
+			ItemStack bow = new ItemStack(Material.BOW, 1);
+			ItemStack sword = new ItemStack(Material.DIAMOND_SWORD, 1);
+			
+			//Weapon Enchantments
+				//Bow Enchantments
+					bow.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 5);
+					bow.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 6);
+					bow.addUnsafeEnchantment(Enchantment.ARROW_FIRE, 3);
+					bow.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK, 4);
+					bow.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 5);
+					bow.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
+					
+				//Sword Enchantments
+					sword.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 3);
+					sword.addUnsafeEnchantment(Enchantment.KNOCKBACK, 3);
+					sword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 6);
+					sword.addUnsafeEnchantment(Enchantment.DAMAGE_UNDEAD, 10);
+					sword.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 5);
+					sword.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 10);
+					
+			//Equips Weapons
+			inv.addItem(bow);
+			inv.addItem(sword);
+					
+					
 		}
 		return false;
 }
