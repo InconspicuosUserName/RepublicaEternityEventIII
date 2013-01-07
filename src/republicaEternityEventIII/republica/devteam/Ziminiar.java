@@ -44,8 +44,8 @@ public class Ziminiar {
 		//TODO: Give Ziminiar his weapons
 	}
 	
-		public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-				// Ziminiar Armor. Wasn't sure how to label that, so fuck it.
+		public boolean ZiminiarArmor(CommandSender sender, Command cmd, String label, String[] args) {
+				// Ziminiar Armor.
 				// Todo: Give acctual armor instead of just diamond.
 				if (cmd.getName().equalsIgnoreCase("ziminiararmor"))
 				{
