@@ -1,21 +1,22 @@
 package republicaEternityEventIII.republica.devteam;
 
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class EternityMain extends JavaPlugin{
 	
-	private EternityCommandExecutor ece = new EternityCommandExecutor();
-	private EternityListener el = new EternityListener();
-	public Ziminiar Z;
+	private EternityCommandExecutor ece;
+	private EternityListener el;
+	public Ziminiar boss;
 	
-	private Player Ziminiar;
-	private Boolean ZiminiarIntialized = false;
+	private Player puppetMaster;
+	private Boolean ziminiarReady = false;
 	
 	public void onEnable() {
 		getLogger().info("Plugin Enabled!");
+		el = new EternityListener(this);
+		ece = new EternityCommandExecutor(this);
 		PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(el, this);
 		
@@ -32,20 +33,20 @@ public class EternityMain extends JavaPlugin{
 	}
 	
 	public void ZiminiarPlayer(Player pl){
-		Ziminiar = pl;
-		ZiminiarIntialized = true;
+		puppetMaster = pl;
+		ziminiarReady = true;
 	}
 	
 	public Player getZiminiarPlayer(){
-		if(ZiminiarIntialized){
-			return Ziminiar;
+		if(ziminiarReady){
+			return puppetMaster;
 		} else {
 			return null;
 		}
 	}
 	
 	public void ziminiarClass(Ziminiar z){
-		Z = z;
+		boss = z;
 	}
 	
 }

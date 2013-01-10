@@ -6,7 +6,12 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public class EternityListener implements Listener{
 	
-	private EternityMain em = new EternityMain();
+	private EternityMain em;
+	public EternityListener(EternityMain em) {
+		super();
+		this.em = em;
+	}
+
 	private Player pl;
 	
 	public void onPlayerDamageMethod(EntityDamageEvent e){
@@ -14,7 +19,7 @@ public class EternityListener implements Listener{
 		if(e.getEntity() instanceof Player){
 			if(em.getZiminiarPlayer() == e.getEntity()){
 				pl = (Player) e.getEntity();
-				em.Z.ZiminiarHit((Player) pl.getLastDamageCause());
+				em.boss.ZiminiarHit((Player) pl.getLastDamageCause());
 				pl.setHealth(20);
 			}
 		}

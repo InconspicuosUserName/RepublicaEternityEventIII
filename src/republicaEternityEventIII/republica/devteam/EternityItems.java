@@ -1,58 +1,53 @@
 package republicaEternityEventIII.republica.devteam;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.inventory.CraftItemStack;
-
-import net.minecraft.server.ItemStack;
-import net.minecraft.server.NBTTagCompound;
-import net.minecraft.server.NBTTagList;
-import net.minecraft.server.NBTTagString;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 
 public class EternityItems {
 	
-	private ItemStack cb;
-	private CraftItemStack cbb = new CraftItemStack(Material.WRITTEN_BOOK);
-	private String cbpI = "		He has risen. I cannot risk returning to the"
-						+ "City Forums, because he has cultists watching every"
-						+ "corner. I said that what you set in motion cannot"
-						+ "be undone, and I fear for your saftey. I have taken"
-						+ "to the skies, I'm not sure whether you will get"
-						+ "these messages, so I will continue to drop these"
-						+ "from my airship. He is no longer in hidding, he has"
-						+ "a fortress that he has made.";
-	private String cbpII= "		You will need to battle him, he must be eliminated"
-						+ "after this coming battle, it will not be over, more will"
-						+ "come in the name of revenge. His followers have built him"
-						+ "a temple, I've watched them sacrifice villagers to him,"
-						+ "I can still not forget their screams, and the smell from"
-						+ "them being burned alive covers my clothing."
-						+ "		You have to hurry, the window of opportunity is"
-						+ "closing, if you delay any further, all will be lost,";
-	private String cbpIII="if it isn't already.";
+	private ItemStack item = null;
+	private String page1 = "  He has risen. I cannot risk returning to the "
+						+ "City Forums, because he has cultists watching every "
+						+ "corner. I said that what you set in motion cannot "
+						+ "be undone, and I fear for your saftey. I have taken "
+						+ "to the skies, I'm not sure whether you will get "
+						+ "these";
+	private String page2 = "messages, so I will continue to drop these "
+						+ "from my airship. He is no longer in hiding, he has "
+						+ "a fortress that he has made.\n"
+						+ "   You will need to battle him, he must be eliminated "
+						+ "after this coming battle, it will not be over, more will "
+						+ "come in the name of";
+	private String page3 = "revenge. His followers have built him "
+						+ "a temple, I've watched them sacrifice villagers to him, "
+						+ "I can still not forget their screams, and the smell from "
+						+ "them being burned alive covers my clothing.\n"
+						+ "   You have to hurry, the window of opportunity is "
+						+ "closing,";
+	private String page4 = "if you delay any further, all will be lost, "
+						+ "if it isn't already.\n\n"
+						+ "He can only be defeated by §kTHIS WILL PRODUCE RANDOMLY"
+						+ "CHANGING TEXT SO IT LOOKS LIKE WE WERE ABOUT TO REVEAL"
+						+ "SOMETHING USEFUL BUT THEN WE GOT STOPPED";
 	
-	public CraftItemStack caesarBook(){
-		cb = cbb.getHandle();
+	public ItemStack caesarBook() {
+		if (item != null) {
+			return item;
+		}
+		item = new ItemStack(Material.WRITTEN_BOOK);
 		
-		NBTTagCompound cbNBT = new NBTTagCompound();
+		BookMeta meta = (BookMeta) item.getItemMeta();
 		
-		cbNBT.setString("title", "Message");
-		cbNBT.setString("author", "Caesar");
+		meta.setAuthor("Caesar");
+		meta.setTitle("Message");
 		
-		NBTTagList cbPages = new NBTTagList();
+		meta.setPages(page1, page2, page3, page4);
 		
-		cbPages.add(new NBTTagString("page1", cbpI));
-		cbPages.add(new NBTTagString("page2", cbpII));
-		cbPages.add(new NBTTagString("page3", cbpIII));
+		item.setItemMeta(meta);
 		
-		cbNBT.set("pages", cbPages);
-		
-		cb.setTag(cbNBT);
-		
-		return new CraftItemStack(cb);
-	}
-	
-	private void setItemName(String s){
-		
+		return item;
 	}
 	
 }
