@@ -13,10 +13,14 @@ public class EternityCommandExecutor implements CommandExecutor{
 
 	private String ziminiar;
 	private Ziminiar z;
-	private EternityMain em = new EternityMain();
-	private EternityItems im = new EternityItems();
+	private EternityMain em;
 	
-	private Player p[] = em.getServer().getOnlinePlayers();
+	public EternityCommandExecutor(EternityMain em) {
+		super();
+		this.em = em;
+	}
+
+	private EternityItems im = new EternityItems();
 	
 	@Override
     public boolean onCommand(CommandSender cs, Command c, String l, String[] args) {
@@ -31,14 +35,21 @@ public class EternityCommandExecutor implements CommandExecutor{
 			}
 		}
 		
+		if (c.getLabel().equalsIgnoreCase("TestSFX")) {
+			if (cs.isOp()) {
+				SoundEffectsManager.playSpawnSound(((Player) cs).getLocation());
+			}
+		}
+		
 		if(c.getLabel().equalsIgnoreCase("Caesar")){
 			if(cs.isOp()){
 				Random rand = new Random(4);
 				int temp = rand.nextInt();
 				
-				for(int i = 0; i < temp && i < p.length; i++){
+				Player[] players = em.getServer().getOnlinePlayers();
+				for(int i = 0; /*i < temp &&*/ i < players.length; i++){
 					int temp2 = rand.nextInt();
-					Player player = p[temp2];
+					Player player = players[/*temp2*/i];
 					player.sendMessage(ChatColor.GREEN + "A book falls from the sky.");
 					Location l1 = player.getLocation();
 					l1.add(2, 5, 0);
