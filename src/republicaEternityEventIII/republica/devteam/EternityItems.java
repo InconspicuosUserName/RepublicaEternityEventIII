@@ -1,18 +1,13 @@
 package republicaEternityEventIII.republica.devteam;
 
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.inventory.CraftItemStack;
-
-import net.minecraft.server.ItemStack;
-import net.minecraft.server.NBTTagCompound;
-import net.minecraft.server.NBTTagList;
-import net.minecraft.server.NBTTagString;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 
 public class EternityItems {
 	
-	private ItemStack cb;
-	private CraftItemStack cbb = new CraftItemStack(Material.WRITTEN_BOOK);
-	private String cbpI = "		He has risen. I cannot risk returning to the"
+	private ItemStack item = null;
+	private String page1 = "		He has risen. I cannot risk returning to the"
 						+ "City Forums, because he has cultists watching every"
 						+ "corner. I said that what you set in motion cannot"
 						+ "be undone, and I fear for your saftey. I have taken"
@@ -20,7 +15,7 @@ public class EternityItems {
 						+ "these messages, so I will continue to drop these"
 						+ "from my airship. He is no longer in hidding, he has"
 						+ "a fortress that he has made.";
-	private String cbpII= "		You will need to battle him, he must be eliminated"
+	private String page2= "		You will need to battle him, he must be eliminated"
 						+ "after this coming battle, it will not be over, more will"
 						+ "come in the name of revenge. His followers have built him"
 						+ "a temple, I've watched them sacrifice villagers to him,"
@@ -28,31 +23,24 @@ public class EternityItems {
 						+ "them being burned alive covers my clothing."
 						+ "		You have to hurry, the window of opportunity is"
 						+ "closing, if you delay any further, all will be lost,";
-	private String cbpIII="if it isn't already.";
+	private String page3="if it isn't already.";
 	
-	public CraftItemStack caesarBook(){
-		cb = cbb.getHandle();
+	public ItemStack caesarBook() {
+		if (item != null) {
+			return item;
+		}
+		item = new ItemStack(Material.WRITTEN_BOOK);
 		
-		NBTTagCompound cbNBT = new NBTTagCompound();
+		BookMeta meta = (BookMeta) item.getItemMeta();
 		
-		cbNBT.setString("title", "Message");
-		cbNBT.setString("author", "Caesar");
+		meta.setAuthor("Caesar");
+		meta.setTitle("Message");
 		
-		NBTTagList cbPages = new NBTTagList();
+		meta.setPages(page1, page2, page3);
 		
-		cbPages.add(new NBTTagString("page1", cbpI));
-		cbPages.add(new NBTTagString("page2", cbpII));
-		cbPages.add(new NBTTagString("page3", cbpIII));
+		item.setItemMeta(meta);
 		
-		cbNBT.set("pages", cbPages);
-		
-		cb.setTag(cbNBT);
-		
-		return new CraftItemStack(cb);
-	}
-	
-	private void setItemName(String s){
-		
+		return item;
 	}
 	
 }
