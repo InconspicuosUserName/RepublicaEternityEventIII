@@ -150,8 +150,8 @@ public class Ziminiar {
 	}
 
 	private void explode() {
-		// TODO Auto-generated method stub
-		
+		Location target = getPlayer().getTargetBlock(null, 100).getLocation();
+		target.getWorld().createExplosion(target, 2f);
 	}
 
 	private void strikeLightning() {
