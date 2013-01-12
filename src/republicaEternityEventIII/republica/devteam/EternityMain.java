@@ -21,6 +21,7 @@ public class EternityMain extends JavaPlugin{
 		ece = new EternityCommandExecutor(this);
 		PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(el, this);
+		DisguiseCraftIntermediary.init();
 	}
 	
 	public void onDisable() {

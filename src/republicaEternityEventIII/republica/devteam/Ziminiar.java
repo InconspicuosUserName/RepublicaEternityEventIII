@@ -11,6 +11,7 @@ public class Ziminiar {
 	
 	public Ziminiar(Player ziminiar){
 		Ziminiar = ziminiar;
+		ziminiar.setDisplayName(ChatColor.BLACK + "Ziminiar");
 		Bukkit.broadcastMessage(ChatColor.BLACK + "Ziminiar" + ChatColor.WHITE + " has risen!");
 		remakeZiminiar(); //Edits the player's attributes.
 	}
@@ -21,6 +22,7 @@ public class Ziminiar {
 	
 	private void remakeZiminiar(){
 		changeZiminiarNameplate();
+		DisguiseCraftIntermediary.dragonify(Ziminiar.getName());
 		ziminiarHealth();
 		ziminiarWeapons();
 		ziminiarArmor();

@@ -2,6 +2,7 @@ main: republicaEternityEventIII.republica.devteam.EternityMain
 name: Eternity Event III
 version: 0.0.1
 authors: [xXProdigalXx, Perolan, mathphreak, Thosha]
+depend: [DisguiseCraft]
 commands:
   Ziminiar:
     description: Summon Ziminiar!
