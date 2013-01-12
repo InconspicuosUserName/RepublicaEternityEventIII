@@ -12,16 +12,25 @@ public class EternityCommandExecutor implements CommandExecutor{
 	private String ziminiar;
 	private Ziminiar z;
 	private EternityMain em;
+	private CommandSender lastCS;
+	private static EternityCommandExecutor INSTANCE = null;
 	
 	public EternityCommandExecutor(EternityMain em) {
 		super();
+		if (INSTANCE != null) {
+			throw new RuntimeException("Instantiated multiple EternityCommandExecutors");
+		}
 		this.em = em;
+		INSTANCE = this;
 	}
-
-	private EternityItems im = new EternityItems();
+	
+	public static void sendMessageToLastSender(String message) {
+		INSTANCE.lastCS.sendMessage(message);
+	}
 	
 	@Override
     public boolean onCommand(CommandSender cs, Command c, String l, String[] args) {
+		lastCS = cs;
 	    
 		if(c.getLabel().equalsIgnoreCase("Ziminiar")){
 			if(cs.isOp()){
@@ -32,6 +41,13 @@ public class EternityCommandExecutor implements CommandExecutor{
 					setZiminiarInMain(z);
 					return true;
 				}
+			}
+		}
+		
+		if (c.getLabel().equalsIgnoreCase("setResultsSign")) {
+			if (cs.isOp()) {
+				SignPunchingOMatic.change();
+				cs.sendMessage("Punch a sign to set it.");
 			}
 		}
 		
@@ -53,15 +69,15 @@ public class EternityCommandExecutor implements CommandExecutor{
 		
 		if (c.getLabel().equalsIgnoreCase("getBook")) {
 			if (cs.isOp()) {
-				im.loadResults();
-				((Player) cs).getInventory().addItem(im.getResultsBook());
+				EternityItems.loadResults();
+				((Player) cs).getInventory().addItem(EternityItems.getResultsBook());
 				return true;
 			}
 		}
 		
 		if (c.getLabel().equalsIgnoreCase("saveResults")) {
 			if (cs.isOp()) {
-				im.saveResults();
+				EternityItems.saveResults();
 				return true;
 			}
 		}
@@ -78,7 +94,7 @@ public class EternityCommandExecutor implements CommandExecutor{
 					player.sendMessage(ChatColor.GREEN + "A book falls from the sky.");
 					Location l1 = player.getLocation();
 					l1.add(2, 5, 0);
-					player.getWorld().dropItemNaturally(l1, im.caesarBook());
+					player.getWorld().dropItemNaturally(l1, EternityItems.caesarBook());
 				}
 				
 				return true;

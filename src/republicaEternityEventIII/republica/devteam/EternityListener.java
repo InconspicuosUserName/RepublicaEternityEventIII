@@ -1,8 +1,10 @@
 package republicaEternityEventIII.republica.devteam;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public class EternityListener implements Listener{
 	
@@ -11,19 +13,26 @@ public class EternityListener implements Listener{
 		super();
 		this.em = em;
 	}
-
-	private Player pl;
 	
+	@EventHandler
 	public void onPlayerDamageMethod(EntityDamageEvent e){
 		
 		if(e.getEntity() instanceof Player){
 			if(em.getZiminiarPlayer() == e.getEntity()){
-				pl = (Player) e.getEntity();
+				Player pl = (Player) e.getEntity();
 				em.boss.ZiminiarHit((Player) pl.getLastDamageCause());
 				pl.setHealth(20);
 			}
 		}
 		
+	}
+	
+	@EventHandler
+	public void onPlayerPunchThing(PlayerInteractEvent e) {
+		SignPunchingOMatic.checkFor(e);
+		if (SignPunchingOMatic.changed()) {
+			em.saveResultsSignLocation();
+		}
 	}
 	
 }

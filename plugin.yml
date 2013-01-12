@@ -16,3 +16,5 @@ commands:
     description: Save event results.
   getBook:
     description: Give yourself the results book.
+  setResultsSign:
+    description: Set the sign that can be punched to get the results book.

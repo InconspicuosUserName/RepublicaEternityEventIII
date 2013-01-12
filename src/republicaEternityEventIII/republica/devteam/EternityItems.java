@@ -13,36 +13,36 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
-public class EternityItems {
+public abstract class EternityItems {
 	
-	private ItemStack item = null;
-	private String page1 = "  He has risen. I cannot risk returning to the "
+	private static ItemStack item = null;
+	private static String page1 = "  He has risen. I cannot risk returning to the "
 						+ "City Forums, because he has cultists watching every "
 						+ "corner. I said that what you set in motion cannot "
 						+ "be undone, and I fear for your saftey. I have taken "
 						+ "to the skies, I'm not sure whether you will get "
 						+ "these";
-	private String page2 = "messages, so I will continue to drop these "
+	private static String page2 = "messages, so I will continue to drop these "
 						+ "from my airship. He is no longer in hiding, he has "
 						+ "a fortress that he has made.\n"
 						+ "   You will need to battle him, he must be eliminated "
 						+ "after this coming battle, it will not be over, more will "
 						+ "come in the name of";
-	private String page3 = "revenge. His followers have built him "
+	private static String page3 = "revenge. His followers have built him "
 						+ "a temple, I've watched them sacrifice villagers to him, "
 						+ "I can still not forget their screams, and the smell from "
 						+ "them being burned alive covers my clothing.\n"
 						+ "   You have to hurry, the window of opportunity is "
 						+ "closing,";
-	private String page4 = "if you delay any further, all will be lost, "
+	private static String page4 = "if you delay any further, all will be lost, "
 						+ "if it isn't already.\n\n"
 						+ "He can only be defeated by " + ChatColor.MAGIC + "THIS WILL PRODUCE RANDOMLY"
 						+ "CHANGING TEXT SO IT LOOKS LIKE WE WERE ABOUT TO REVEAL"
 						+ "SOMETHING USEFUL BUT THEN WE GOT STOPPED";
-	private String massiveResultsBookTypeThing = null;
-	private ItemStack resultsBook;
+	private static String massiveResultsBookTypeThing = null;
+	private static ItemStack resultsBook;
 	
-	public ItemStack caesarBook() {
+	public static ItemStack caesarBook() {
 		if (item != null) {
 			return item;
 		}
@@ -60,7 +60,7 @@ public class EternityItems {
 		return item;
 	}
 	
-	public ItemStack getResultsBook() {
+	public static ItemStack getResultsBook() {
 		if (resultsBook != null) {
 			return resultsBook;
 		}
@@ -91,7 +91,7 @@ public class EternityItems {
 		return resultsBook;
 	}
 	
-	public void loadResults() {
+	public static void loadResults() {
 		BufferedReader input = null;
 		try {
 			input = new BufferedReader(new FileReader("eventIIIresults.txt"));
@@ -116,10 +116,11 @@ public class EternityItems {
 		}
 	}
 
-	public void saveResults() {
+	public static void saveResults() {
 		BufferedWriter output = null;
 		try {
 			output = new BufferedWriter(new FileWriter("eventIIIresults.txt"));
+			massiveResultsBookTypeThing = "";
 			List<String> users = MagicalStorage.getPlayersSortedByScore();
 			for (String userName : users) {
 				int score = MagicalStorage.getPlayerScore(userName);
@@ -132,6 +133,7 @@ public class EternityItems {
 				}
 				builder.append(scoreString);
 				output.write(builder.toString() + "\n");
+				massiveResultsBookTypeThing = massiveResultsBookTypeThing + builder.toString() + "\n";
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
