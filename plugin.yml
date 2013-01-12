@@ -9,3 +9,9 @@ commands:
     description: Drop messages from Caesar.
   testSFX:
     description: Test sound effects.
+  addTestData:
+    description: Add test data.
+  saveResults:
+    description: Save event results.
+  getBook:
+    description: Give yourself the results book.

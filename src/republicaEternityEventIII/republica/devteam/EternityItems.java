@@ -1,6 +1,14 @@
 package republicaEternityEventIII.republica.devteam;
 
-import org.bukkit.Bukkit;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
@@ -28,9 +36,11 @@ public class EternityItems {
 						+ "closing,";
 	private String page4 = "if you delay any further, all will be lost, "
 						+ "if it isn't already.\n\n"
-						+ "He can only be defeated by §kTHIS WILL PRODUCE RANDOMLY"
+						+ "He can only be defeated by " + ChatColor.MAGIC + "THIS WILL PRODUCE RANDOMLY"
 						+ "CHANGING TEXT SO IT LOOKS LIKE WE WERE ABOUT TO REVEAL"
 						+ "SOMETHING USEFUL BUT THEN WE GOT STOPPED";
+	private String massiveResultsBookTypeThing = null;
+	private ItemStack resultsBook;
 	
 	public ItemStack caesarBook() {
 		if (item != null) {
@@ -48,6 +58,94 @@ public class EternityItems {
 		item.setItemMeta(meta);
 		
 		return item;
+	}
+	
+	public ItemStack getResultsBook() {
+		if (resultsBook != null) {
+			return resultsBook;
+		}
+		
+		if (massiveResultsBookTypeThing == null) {
+			return new ItemStack(Material.AIR);
+		}
+		
+		resultsBook = new ItemStack(Material.WRITTEN_BOOK);
+		
+		BookMeta resultsMeta = (BookMeta) resultsBook.getItemMeta();
+		resultsMeta.setAuthor("mathphreak");
+		resultsMeta.setTitle("Eternity III Results");
+		
+		String[] lines = massiveResultsBookTypeThing.split("\n");
+		String page = "";
+		for (String line : lines) {
+			if (page.length() + 1 + line.length() > 254) {
+				resultsMeta.addPage(page);
+				page = "";
+			}
+			page = page + line + " ";
+		}
+		resultsMeta.addPage(page);
+		
+		resultsBook.setItemMeta(resultsMeta);
+		
+		return resultsBook;
+	}
+	
+	public void loadResults() {
+		BufferedReader input = null;
+		try {
+			input = new BufferedReader(new FileReader("eventIIIresults.txt"));
+			massiveResultsBookTypeThing = input.readLine();
+			while (input.ready()) {
+				massiveResultsBookTypeThing = massiveResultsBookTypeThing + "\n" + input.readLine();
+			}
+		} catch (FileNotFoundException e) {
+			// the file wasn't found, meaning the results don't exist, which means the event isn't over
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				input.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+				// who cares?
+			}
+		}
+	}
+
+	public void saveResults() {
+		BufferedWriter output = null;
+		try {
+			output = new BufferedWriter(new FileWriter("eventIIIresults.txt"));
+			List<String> users = MagicalStorage.getPlayersSortedByScore();
+			for (String userName : users) {
+				int score = MagicalStorage.getPlayerScore(userName);
+				String scoreString = String.valueOf(score);
+				int totalLength = userName.length() + scoreString.length();
+				int paddingLength = 21 - totalLength;
+				StringBuilder builder = new StringBuilder(userName);
+				for (int i = 0; i < paddingLength; i++) {
+					builder.append(" ");
+				}
+				builder.append(scoreString);
+				output.write(builder.toString() + "\n");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				output.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+				// who cares?
+			}
+		}
 	}
 	
 }

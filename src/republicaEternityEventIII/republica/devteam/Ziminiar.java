@@ -55,6 +55,6 @@ public class Ziminiar {
 		damageZiminiarHealth(1);
 		//I might change this later...
 		
-		//ThoshasMethod(pl) { pl.damage++ } or something
+		MagicalStorage.incrementPlayerScore(pl.getName(), 1);
 	}
 }

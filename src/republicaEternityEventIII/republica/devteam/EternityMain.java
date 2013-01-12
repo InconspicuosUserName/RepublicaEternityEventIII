@@ -1,5 +1,7 @@
 package republicaEternityEventIII.republica.devteam;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,9 +21,6 @@ public class EternityMain extends JavaPlugin{
 		ece = new EternityCommandExecutor(this);
 		PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(el, this);
-		
-		getCommand("Ziminiar").setExecutor(ece);
-		getCommand("Caesar").setExecutor(ece);
 	}
 	
 	public void onDisable() {
@@ -47,6 +46,12 @@ public class EternityMain extends JavaPlugin{
 	
 	public void ziminiarClass(Ziminiar z){
 		boss = z;
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command,
+			String label, String[] args) {
+		return ece.onCommand(sender, command, label, args);
 	}
 	
 }
