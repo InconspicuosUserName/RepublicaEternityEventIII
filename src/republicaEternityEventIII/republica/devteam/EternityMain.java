@@ -13,7 +13,7 @@ public class EternityMain extends JavaPlugin{
 	private EternityListener el;
 	public Ziminiar boss;
 	
-	private Player puppetMaster;
+	private String puppetMaster;
 	private Boolean ziminiarReady = false;
 	
 	public void saveResultsSignLocation() {
@@ -46,18 +46,18 @@ public class EternityMain extends JavaPlugin{
 		getLogger().info("Plugin Disabled!");
 	}
 	
-	public Player getZiminiarTargetPlayer(String s){
+	public Player getPlayer(String s){
 		return getServer().getPlayer(s);
 	}
 	
 	public void ZiminiarPlayer(Player pl){
-		puppetMaster = pl;
+		puppetMaster = pl.getName();
 		ziminiarReady = true;
 	}
 	
 	public Player getZiminiarPlayer(){
 		if(ziminiarReady){
-			return puppetMaster;
+			return getPlayer(puppetMaster);
 		} else {
 			return null;
 		}

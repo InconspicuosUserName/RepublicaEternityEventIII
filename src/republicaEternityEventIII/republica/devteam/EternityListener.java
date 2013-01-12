@@ -30,6 +30,9 @@ public class EternityListener implements Listener{
 	@EventHandler
 	public void onPlayerPunchThing(PlayerInteractEvent e) {
 		SignPunchingOMatic.checkFor(e);
+		if (em.boss != null) {
+			em.boss.checkForSpells(e);
+		}
 		if (SignPunchingOMatic.changed()) {
 			em.saveResultsSignLocation();
 		}

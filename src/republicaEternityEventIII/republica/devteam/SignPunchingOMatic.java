@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 // I AM PUNCHING YOUR SIGN
@@ -33,6 +34,7 @@ public class SignPunchingOMatic {
 	public static void checkFor(PlayerInteractEvent e) {
 		Block block = e.getClickedBlock();
 		if (block == null) return;
+		if (!e.getAction().equals(Action.LEFT_CLICK_BLOCK)) return;
 		if (block.getLocation().equals(signToPunch)) {
 			Player player = e.getPlayer();
 			player.getInventory().addItem(EternityItems.getResultsBook());

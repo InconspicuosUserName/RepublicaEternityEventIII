@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 
 public class EternityCommandExecutor implements CommandExecutor{
 
-	private String ziminiar;
-	private Ziminiar z;
+	private String puppetmaster;
+	private Ziminiar ziminiar;
 	private EternityMain em;
 	private CommandSender lastCS;
 	private static EternityCommandExecutor INSTANCE = null;
@@ -35,10 +35,10 @@ public class EternityCommandExecutor implements CommandExecutor{
 		if(c.getLabel().equalsIgnoreCase("Ziminiar")){
 			if(cs.isOp()){
 				if (args.length == 1) {
-					ziminiar = args[0];
+					puppetmaster = args[0];
 					//Code to change player into Ziminiar here
-					z = new Ziminiar(getPlayerByNameOf(ziminiar));
-					setZiminiarInMain(z);
+					ziminiar = new Ziminiar(getPlayerByNameOf(puppetmaster), em);
+					setZiminiarInMain(ziminiar);
 					return true;
 				}
 			}
@@ -105,12 +105,12 @@ public class EternityCommandExecutor implements CommandExecutor{
     }
 	
 	private Player getPlayerByNameOf(String s){
-		return em.getZiminiarTargetPlayer(s);
+		return em.getPlayer(s);
 	}
 	
 	private void setZiminiarInMain(Ziminiar zz){
 		passZiminiarToMain(zz);
-		em.ZiminiarPlayer(zz.returnZiminiar());
+		em.ZiminiarPlayer(getPlayerByNameOf(puppetmaster));
 	}
 	
 	private void passZiminiarToMain(Ziminiar zz){
