@@ -155,8 +155,8 @@ public class Ziminiar {
 	}
 
 	private void strikeLightning() {
-		// TODO Auto-generated method stub
-		
+		Location target = getPlayer().getTargetBlock(null, 100).getLocation();
+		target.getWorld().strikeLightning(target);
 	}
 
 	private void fireArrowBarrage() {
