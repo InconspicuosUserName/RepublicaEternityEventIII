@@ -19,7 +19,7 @@ public class EternityListener implements Listener{
 		
 		if(e.getEntity() instanceof Player){
 			if(em.getZiminiarPlayer() == e.getEntity()){
-				Player pl = (Player) e.getEntity();
+				Player pl = (Player) (e.getEntity());
 				em.boss.ZiminiarHit((Player) pl.getLastDamageCause());
 				pl.setHealth(20);
 			}
