@@ -190,7 +190,7 @@ public class Ziminiar {
 			arrowStart.add(rand.nextDouble() - 0.5, rand.nextDouble() - 0.5, rand.nextDouble() - 0.5);
 			// spawn the arrow
 			World world = arrowStart.getWorld();
-			world.spawnArrow(arrowStart, direction, 1.6f, 12);
+			world.spawnArrow(arrowStart, direction, rand.nextFloat() * 0.1f + 1.5f, 12);
 		}
 	}
 }
