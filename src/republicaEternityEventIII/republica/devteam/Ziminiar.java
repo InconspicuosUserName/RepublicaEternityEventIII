@@ -138,8 +138,9 @@ public class Ziminiar {
 	}
 
 	private void primeTNT() {
-		// TODO Auto-generated method stub
-		
+		Location place = getPlayer().getLocation();
+		World world = place.getWorld();
+		world.spawnEntity(place, EntityType.PRIMED_TNT);
 	}
 
 	private void spawnMinions() {
