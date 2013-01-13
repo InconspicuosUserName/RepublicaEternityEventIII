@@ -143,8 +143,15 @@ public class Ziminiar {
 	}
 
 	private void spawnMinions() {
-		// TODO Auto-generated method stub
-		
+		Random rand = new Random();
+		// spawn 2 to 4 zombies
+		int minionCount = rand.nextInt(3) + 2;
+		Location target = getPlayer().getTargetBlock(null, 100).getLocation().add(0, 1, 0);
+		World world = target.getWorld();
+		for (int i = 0; i < minionCount; i++) {
+			Location newSpot = target.clone().add(4 * rand.nextDouble() - 2, 0, 4 * rand.nextDouble() - 2);
+			world.spawnEntity(newSpot, EntityType.ZOMBIE);
+		}
 	}
 
 	private void placeMobSpawner() {
