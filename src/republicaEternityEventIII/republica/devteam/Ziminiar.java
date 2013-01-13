@@ -7,6 +7,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.block.CreatureSpawner;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -145,8 +148,12 @@ public class Ziminiar {
 	}
 
 	private void placeMobSpawner() {
-		// TODO Auto-generated method stub
-		
+		Location target = getPlayer().getTargetBlock(null, 100).getLocation().add(0, 1, 0);
+		World world = target.getWorld();
+		Block newSpawner = world.getBlockAt(target);
+		newSpawner.setType(Material.MOB_SPAWNER);
+		CreatureSpawner spawnerData = (CreatureSpawner) newSpawner.getState();
+		spawnerData.setSpawnedType(EntityType.PIG_ZOMBIE);
 	}
 
 	private void explode() {
