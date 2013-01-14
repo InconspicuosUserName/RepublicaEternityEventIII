@@ -24,5 +24,9 @@ public class PlayerNamePlateEvent extends PlayerEvent{
 		name = s;
 		pl.getName();
 	}
+
+	public String getName() {
+		return name;
+	}
 	
 }
