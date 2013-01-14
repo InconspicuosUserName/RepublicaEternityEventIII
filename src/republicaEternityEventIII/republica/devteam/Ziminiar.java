@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -133,8 +134,17 @@ public class Ziminiar {
 	}
 
 	private void shootMoltenCharge() {
-		// TODO Auto-generated method stub
-		
+		// where is the player's head?
+		Location head = getPlayer().getEyeLocation();
+		// which direction is the player looking?
+		Vector direction = head.getDirection();
+		// where should the fireball start (more or less)?
+		Location fireballStart = head.clone();
+		fireballStart.add(direction.clone().multiply(3));
+		// spawn the fireball
+		World world = fireballStart.getWorld();
+		Entity fireball = world.spawnEntity(fireballStart, EntityType.FIREBALL);
+		fireball.setVelocity(direction);
 	}
 
 	private void primeTNT() {
