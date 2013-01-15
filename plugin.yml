@@ -1,0 +1,22 @@
+main: republicaEternityEventIII.republica.devteam.EternityMain
+name: Eternity Event III
+version: 0.0.1
+authors: [xXProdigalXx, Perolan, mathphreak, Thosha]
+depend: [DisguiseCraft]
+commands:
+  Ziminiar:
+    description: Summon Ziminiar!
+  Caesar:
+    description: Drop messages from Caesar.
+  testSFX:
+    description: Test sound effects.
+  addTestData:
+    description: Add test data.
+  saveResults:
+    description: Save event results.
+  getBook:
+    description: Give yourself the results book.
+  setResultsSign:
+    description: Set the sign that can be punched to get the results book.
+  nerf:
+    description: Set nerfed status to true or false.
