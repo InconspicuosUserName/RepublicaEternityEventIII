@@ -21,9 +21,12 @@ import org.bukkit.util.Vector;
 
 public class Ziminiar {
 	
+	private final int COOLDOWN_IN_SECONDS = 3;
+	public static boolean cooldownEnabled = false;
 	private int health;
 	private String username;
 	private EternityMain main;
+	private long lastSpellTime = 0;
 	
 	private Player getPlayer() {
 		return main.getPlayer(username);
@@ -34,6 +37,7 @@ public class Ziminiar {
 		username = ziminiar.getName();
 		ziminiar.setDisplayName(ChatColor.BLACK + "Ziminiar");
 		Bukkit.broadcastMessage(ChatColor.BLACK + "Ziminiar" + ChatColor.WHITE + " has risen!");
+		SoundEffectsManager.playSpawnSound(ziminiar.getLocation());
 		remakeZiminiar(); //Edits the player's attributes.
 	}
 	
@@ -105,28 +109,40 @@ public class Ziminiar {
 		// and now we know player is Ziminiar
 		if (!(e.getAction().equals(Action.LEFT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_AIR))) return;
 		// and now we know Ziminiar clicked air (as opposed to a block)
+		if (cooldownEnabled) {
+			if (lastSpellTime + COOLDOWN_IN_SECONDS * 1000 > System.currentTimeMillis()) {
+				return;
+			}
+		}
 		Material heldItemType = player.getItemInHand().getType();
 		switch (heldItemType) {
 		case BLAZE_ROD:
 			strikeLightning();
+			lastSpellTime = System.currentTimeMillis();
 			break;
 		case ARROW:
 			fireArrowBarrage();
+			lastSpellTime = System.currentTimeMillis();
 			break;
 		case SULPHUR:
 			explode();
+			lastSpellTime = System.currentTimeMillis();
 			break;
 		case MOB_SPAWNER:
 			placeMobSpawner();
+			lastSpellTime = System.currentTimeMillis();
 			break;
 		case MONSTER_EGG:
 			spawnMinions();
+			lastSpellTime = System.currentTimeMillis();
 			break;
 		case TNT:
 			primeTNT();
+			lastSpellTime = System.currentTimeMillis();
 			break;
 		case BLAZE_POWDER:
 			shootMoltenCharge();
+			lastSpellTime = System.currentTimeMillis();
 			break;
 		default:
 			break;
