@@ -44,6 +44,16 @@ public class EternityCommandExecutor implements CommandExecutor{
 			}
 		}
 		
+		if(c.getLabel().equalsIgnoreCase("nerf")){
+			if(cs.isOp()){
+				if (args.length == 1) {
+					String status = args[0];
+					Ziminiar.cooldownEnabled = Boolean.parseBoolean(status);
+					return true;
+				}
+			}
+		}
+		
 		if (c.getLabel().equalsIgnoreCase("setResultsSign")) {
 			if (cs.isOp()) {
 				SignPunchingOMatic.change();

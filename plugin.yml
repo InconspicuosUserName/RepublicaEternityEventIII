@@ -18,3 +18,5 @@ commands:
     description: Give yourself the results book.
   setResultsSign:
     description: Set the sign that can be punched to get the results book.
+  nerf:
+    description: Set nerfed status to true or false.
