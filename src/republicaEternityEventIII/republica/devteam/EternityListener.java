@@ -3,7 +3,7 @@ package republicaEternityEventIII.republica.devteam;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class EternityListener implements Listener{
@@ -15,9 +15,9 @@ public class EternityListener implements Listener{
 	}
 	
 	@EventHandler
-	public void onPlayerDamageMethod(EntityDamageEvent e){
+	public void onPlayerDamageMethod(EntityDamageByEntityEvent e){
 		
-		if(e.getEntity() instanceof Player){
+		if(e.getEntity() instanceof Player && e.getEntity().getLastDamageCause() instanceof Player){
 			if(em.getZiminiarPlayer() == e.getEntity()){
 				Player pl = (Player) (e.getEntity());
 				em.boss.ZiminiarHit((Player) (pl.getLastDamageCause()));

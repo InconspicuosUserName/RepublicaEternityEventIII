@@ -1,5 +1,7 @@
 package republicaEternityEventIII.republica.devteam;
 
+import java.util.Random;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -94,13 +96,13 @@ public class EternityCommandExecutor implements CommandExecutor{
 		
 		if(c.getLabel().equalsIgnoreCase("Caesar")){
 			if(cs.isOp()){
-//				Random rand = new Random(4);
-//				int temp = rand.nextInt();
+				Random rand = new Random(4);
+				int temp = rand.nextInt();
 				
 				Player[] players = em.getServer().getOnlinePlayers();
-				for(int i = 0; /*i < temp &&*/ i < players.length; i++){
-//					int temp2 = rand.nextInt();
-					Player player = players[/*temp2*/i];
+				for(int i = 0; i < temp && i < players.length; i++){
+					int temp2 = rand.nextInt();
+					Player player = players[temp2];
 					player.sendMessage(ChatColor.GREEN + "A book falls from the sky.");
 					Location l1 = player.getLocation();
 					l1.add(2, 5, 0);
