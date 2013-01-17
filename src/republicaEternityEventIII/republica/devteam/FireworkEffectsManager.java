@@ -25,6 +25,14 @@ public class FireworkEffectsManager {
 		feRed.setFireworkMeta(fem);
 		fem.addEffects(FireworkEffect.builder().flicker(false).with(Type.BALL).withColor(Color.BLUE).withFade(Color.BLUE).build());
 		feBlue.setFireworkMeta(fem);
+		fem.addEffects(FireworkEffect.builder().flicker(true).with(Type.BURST).withColor(Color.GREEN).withFade(Color.GREEN).build());
+		feGreen.setFireworkMeta(fem);
+		fem.addEffects(FireworkEffect.builder().flicker(false).with(Type.STAR).withColor(Color.WHITE).withFade(Color.WHITE).build());
+		feWhite.setFireworkMeta(fem);
+		fem.addEffects(FireworkEffect.builder().flicker(true).with(Type.BALL_LARGE).withColor(Color.YELLOW).withFade(Color.YELLOW).build());
+		feYellow.setFireworkMeta(fem);
+		fem.addEffects(FireworkEffect.builder().flicker(false).with(Type.BURST).withColor(Color.PURPLE).withFade(Color.PURPLE).build());
+		fePurple.setFireworkMeta(fem);
 	}
 	
 }
