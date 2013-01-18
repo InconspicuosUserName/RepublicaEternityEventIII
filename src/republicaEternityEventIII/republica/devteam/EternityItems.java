@@ -16,25 +16,27 @@ import org.bukkit.inventory.meta.BookMeta;
 public abstract class EternityItems {
 	
 	private static ItemStack item = null;
-	private static String page1 = "  He has risen. I cannot risk returning to the "
+	private static String m = ChatColor.MAGIC + "";
+	private static String r = ChatColor.RESET + "";
+	private static String page1 = "  He h" + m + "a" + r + "s risen. I cannot risk returning to the "
 						+ "City Forums, because he has cultists watching every "
-						+ "corner. I said that what you set in motion cannot "
+						+ "corner. I s" + m + "a" + r + "id that what you s" + m + "et" + r + " in motion cannot "
 						+ "be undone, and I fear for your saftey. I have taken "
-						+ "to the skies, I'm not sure whether you will get "
+						+ "to the skies, I'm not sure whether you wi" + m + "l" + r + "l get "
 						+ "these";
-	private static String page2 = "messages, so I will continue to drop these "
+	private static String page2 = "me" + m + "ssag" + r + "es, so I will continue to drop these "
 						+ "from my airship. He is no longer in hiding, he has "
-						+ "a fortress that he has made.\n"
+						+ "a fortress that h" + m + "e h" + r + "as made.\n"
 						+ "   You will need to battle him, he must be eliminated "
-						+ "after this coming battle, it will not be over, more will "
+						+ "after this coming ba" + m + "t" + r + "tle, it will not be over, more will "
 						+ "come in the name of";
 	private static String page3 = "revenge. His followers have built him "
 						+ "a temple, I've watched them sacrifice villagers to him, "
 						+ "I can still not forget their screams, and the smell from "
-						+ "them being burned alive covers my clothing.\n"
-						+ "   You have to hurry, the window of opportunity is "
+						+ "them be" + m + "in" + r + "g burned alive covers my clothing.\n"
+						+ "   You have to hurry, the windo" + m + "w o" + r + "f opportunity is "
 						+ "closing,";
-	private static String page4 = "if you delay any further, all will be lost, "
+	private static String page4 = "if yo" + m + "u d" + r + "elay any further, all will be lost, "
 						+ "if it isn't already.\n\n"
 						+ "He can only be defeated by " + ChatColor.MAGIC + "THIS WILL PRODUCE RANDOMLY"
 						+ "CHANGING TEXT SO IT LOOKS LIKE WE WERE ABOUT TO REVEAL"
