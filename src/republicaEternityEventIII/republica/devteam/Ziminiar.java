@@ -44,6 +44,7 @@ public class Ziminiar {
 	private void remakeZiminiar(){
 		changeZiminiarNameplate();
 		DisguiseCraftIntermediary.dragonify(username);
+		getPlayer().setAllowFlight(true);
 		ziminiarHealth();
 		ziminiarWeapons();
 		ziminiarArmor();
