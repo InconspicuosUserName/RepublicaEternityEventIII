@@ -96,6 +96,8 @@ public class EternityCommandExecutor implements CommandExecutor{
 		
 		if(c.getLabel().equalsIgnoreCase("Caesar")){
 			if(cs.isOp()){
+				cs.sendMessage("Books begin to fall!");
+				
 				Random rand = new Random(4);
 				int temp = rand.nextInt();
 				
