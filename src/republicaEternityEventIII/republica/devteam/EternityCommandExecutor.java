@@ -98,8 +98,8 @@ public class EternityCommandExecutor implements CommandExecutor{
 			if(cs.isOp()){
 				cs.sendMessage("Books begin to fall!");
 				
-				Random rand = new Random(4);
-				int temp = rand.nextInt();
+				Random rand = new Random();
+				int temp = rand.nextInt(4);
 				
 				Player[] players = em.getServer().getOnlinePlayers();
 				for(int i = 0; i < temp && i < players.length; i++){
