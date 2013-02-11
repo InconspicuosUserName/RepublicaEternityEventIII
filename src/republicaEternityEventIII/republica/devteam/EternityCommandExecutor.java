@@ -100,10 +100,11 @@ public class EternityCommandExecutor implements CommandExecutor{
 				
 				Random rand = new Random();
 				int temp = rand.nextInt(4);
+				int temp2;
 				
 				Player[] players = em.getServer().getOnlinePlayers();
 				for(int i = 0; i < temp && i < players.length; i++){
-					int temp2 = rand.nextInt(players.length) - 1;
+					temp2 = rand.nextInt(players.length) - 1;
 					Player player = players[temp2];
 					cs.sendMessage("A book was sent to "+ player.getDisplayName() + ".");
 					player.sendMessage(ChatColor.GREEN + "A book falls from the sky.");
