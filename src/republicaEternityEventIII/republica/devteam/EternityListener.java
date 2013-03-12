@@ -44,7 +44,7 @@ public class EternityListener implements Listener, Plugin{
 	public void onPlayerDeath(PlayerDeathEvent e)
 	{
 		Player p = (Player) e.getEntity();
-		 if (p.hasPermission("ziminiar.level")){
+		 if(p.isOp()){
 			 //Sorry for this spam, but I'm not risking shit being fucked up now!
 			 for(int i = 0; i < 200; i++){	
 				 //Spawn the Firework
