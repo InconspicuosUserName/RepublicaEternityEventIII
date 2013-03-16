@@ -91,6 +91,9 @@ public class Ziminiar {
 	
 	private void damageZiminiarHealth(int i){
 		health -= i;
+		if (health < 0) {
+			health = 0;
+		}
 		damages++;
 		
 		if(damages % 5 == 0){
