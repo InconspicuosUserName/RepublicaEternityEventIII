@@ -27,6 +27,7 @@ public class Ziminiar {
 	private String username;
 	private EternityMain main;
 	private long lastSpellTime = 0;
+	private int damages = 0;
 	
 	private Player getPlayer() {
 		return main.getPlayer(username);
@@ -35,7 +36,7 @@ public class Ziminiar {
 	public Ziminiar(Player ziminiar, EternityMain main){
 		this.main = main;
 		username = ziminiar.getName();
-		ziminiar.setDisplayName(ChatColor.BLACK + "Ziminiar");
+		ziminiar.setDisplayName(ChatColor.BLACK + "Ziminiar" + ChatColor.RESET);
 		Bukkit.broadcastMessage(ChatColor.BLACK + "Ziminiar" + ChatColor.WHITE + " has risen!");
 		SoundEffectsManager.playSpawnSound(ziminiar.getLocation());
 		remakeZiminiar(); //Edits the player's attributes.
@@ -55,7 +56,7 @@ public class Ziminiar {
 	}
 	
 	private void ziminiarHealth(){
-		health = 2000;
+		health = 100;
 	}
 	
 	private void rename(ItemStack stack, String name) {
@@ -90,15 +91,16 @@ public class Ziminiar {
 	
 	private void damageZiminiarHealth(int i){
 		health -= i;
+		damages++;
 		
-		if(health % 25 == 0){
+		if(damages % 5 == 0){
 			Bukkit.broadcastMessage(ChatColor.BLACK + "Ziminiar" + ChatColor.RED + " has " + ChatColor.BLUE + health + ChatColor.RED + " remaining");
 			//Broadcasts when Ziminiar has been taking down 25 health
 		}
 	}
 	
-	public void ZiminiarHit(Player pl){
-		damageZiminiarHealth(1);
+	public void ZiminiarHit(Player pl, int damage){
+		damageZiminiarHealth(damage);
 		//I might change this later...
 		
 		MagicalStorage.incrementPlayerScore(pl.getName(), 1);
@@ -219,5 +221,9 @@ public class Ziminiar {
 			World world = arrowStart.getWorld();
 			world.spawnArrow(arrowStart, direction, rand.nextFloat() * 0.1f + 1.5f, 12);
 		}
+	}
+
+	public int getHealth() {
+		return health;
 	}
 }

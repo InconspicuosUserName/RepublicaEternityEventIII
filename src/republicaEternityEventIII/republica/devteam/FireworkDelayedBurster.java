@@ -5,6 +5,7 @@ import java.util.Random;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
+import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -12,10 +13,10 @@ import org.bukkit.inventory.meta.FireworkMeta;
 
 public class FireworkDelayedBurster implements Runnable {
 	
-	private Player p;
+	private Location loc;
 
 	public FireworkDelayedBurster(Player pInit){
-	    p = pInit;
+	    loc = pInit.getLocation();
 }
 	  public void run() {
 	        // firework spawning stuff goes here instead of onDeath
@@ -23,7 +24,7 @@ public class FireworkDelayedBurster implements Runnable {
 			 
 			  
 	            //Spawn the Firework
-	            Firework fw = (Firework) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
+	            Firework fw = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
 	            FireworkMeta fwm = fw.getFireworkMeta();
 
 	            //random

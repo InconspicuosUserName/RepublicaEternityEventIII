@@ -10,11 +10,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
-import org.bukkit.Server;
 import org.bukkit.FireworkEffect.Type;
+import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -30,7 +32,6 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginLoader;
 
 import com.avaje.ebean.EbeanServer;
-import republicaEternityEventIII.republica.devteam.FireworkDelayedBurster;
 
 public class EternityListener implements Listener, Plugin{
 	
@@ -92,8 +93,8 @@ public class EternityListener implements Listener, Plugin{
 		            //aaaaaand set it
 		            fw.setFireworkMeta(fwm);
 			 }
-		    	p.sendMessage(ChatColor.RED + "Do not release your spirit!");
-		    	p.sendMessage(ChatColor.RED + "Seriously though, stay still for two minutes while the fireworks go off.");
+		    	p.sendMessage(ChatColor.RED + "Release your spirit!");
+		    	p.sendMessage(ChatColor.RED + "You're good to respawn.");
 		    	
 			    	Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) this, new FireworkDelayedBurster(p), 45L, 45L);    	
 			    	
@@ -113,11 +114,21 @@ public class EternityListener implements Listener, Plugin{
 	@EventHandler
 	public void onPlayerDamageMethod(EntityDamageByEntityEvent e){
 		
-		if(e.getEntity() instanceof Player && e.getEntity().getLastDamageCause() instanceof Player){
-			if(em.getZiminiarPlayer() == e.getEntity()){
-				Player pl = (Player) (e.getEntity());
-				em.boss.ZiminiarHit((Player) (pl.getLastDamageCause()));
-				pl.setHealth(20);
+		if(e.getEntity() instanceof Player) {
+			if (e.getDamager() instanceof Player || e.getDamager() instanceof Arrow){
+				if(em.getZiminiarPlayer() == e.getEntity()){
+					Player pl = (Player) (e.getEntity());
+					Entity damager = e.getDamager();
+					if (damager instanceof Player) {
+						em.boss.ZiminiarHit((Player) e.getDamager(), e.getDamage());
+					} else {
+						Arrow arrow = (Arrow) damager;
+						if (arrow.getShooter() instanceof Player) {
+							em.boss.ZiminiarHit((Player) arrow.getShooter(), e.getDamage());
+						}
+					}
+					pl.setHealth(em.boss.getHealth() > 20 ? 20 : (0 > em.boss.getHealth() ? 0 : em.boss.getHealth()));
+				}
 			}
 		}
 		
